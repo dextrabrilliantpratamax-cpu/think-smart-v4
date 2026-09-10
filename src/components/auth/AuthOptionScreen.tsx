@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import {
-  GraduationCap,
   Sparkles,
   BookOpen,
   UserCheck,
@@ -542,8 +541,13 @@ export const AuthOptionScreen: React.FC<AuthOptionScreenProps> = ({
           {/* Top Brand Header */}
           <div className="relative z-10 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-indigo-600/30 border border-indigo-400/30 flex items-center justify-center backdrop-blur-md shadow-inner">
-                <GraduationCap className="w-7 h-7 text-indigo-400" />
+              <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center shadow-md overflow-hidden shrink-0">
+                <img
+                  src="/think_smart_logo.png"
+                  alt="Logo Think Smart"
+                  className="w-full h-full object-contain p-1 select-none"
+                  draggable={false}
+                />
               </div>
               <div>
                 <h1 className="text-xl sm:text-2xl font-black tracking-tight uppercase leading-none font-sans">
