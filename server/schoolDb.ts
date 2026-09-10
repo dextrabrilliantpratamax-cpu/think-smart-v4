@@ -42,6 +42,9 @@ export interface SearchOptions {
   sortBy?: "relevance" | "name_asc" | "name_desc";
 }
 
+// Bump this whenever the seed dataset changes so existing databases are rebuilt.
+const SCHOOL_DATA_VERSION = 2;
+
 let dbInstance: DatabaseSync | null = null;
 
 export function getSchoolDb(): DatabaseSync {
@@ -99,11 +102,16 @@ export function getSchoolDb(): DatabaseSync {
       CREATE INDEX IF NOT EXISTS idx_schools_status ON schools(status);
     `);
 
-    // Check count; if empty or outdated, seed default schools
+    // Reseed when the DB is empty, undersized, or built from an older dataset version.
+    const versionRow = dbInstance.prepare("PRAGMA user_version").get() as { user_version: number };
+    const currentVersion = versionRow?.user_version ?? 0;
     const checkRow = dbInstance.prepare("SELECT COUNT(*) as count FROM schools").get() as { count: number };
-    if (!checkRow || checkRow.count < 600) {
-      console.log(`Updating schools database... (current: ${checkRow?.count || 0})`);
+    if (!checkRow || checkRow.count < 600 || currentVersion < SCHOOL_DATA_VERSION) {
+      console.log(
+        `Updating schools database... (current rows: ${checkRow?.count || 0}, version: ${currentVersion} -> ${SCHOOL_DATA_VERSION})`
+      );
       seedInitialSchools(dbInstance);
+      dbInstance.exec(`PRAGMA user_version = ${SCHOOL_DATA_VERSION};`);
       invalidateSchoolCache();
     }
   }
@@ -581,6 +589,8 @@ export function seedInitialSchools(db: DatabaseSync) {
   const seenKeys = new Set<string>();
   let count = 0;
 
+  db.exec("BEGIN");
+
   for (const s of SEKOLAH_KEMENDIKDASMEN) {
     const nama = s.nama.trim().toUpperCase();
     const npsn = s.npsn || `7000${Math.floor(1000 + Math.random() * 9000)}`;
@@ -624,7 +634,101 @@ export function seedInitialSchools(db: DatabaseSync) {
     count++;
   }
 
-  console.log(`Seeded ${count} unique official Dapodik schools into SQLite database successfully.`);
+  // Seed the full SMA/SMK directory for Pulau Jawa (Dapodik export)
+  const jawaCount = seedJawaSchools(insertStmt, seenKeys);
+
+  db.exec("COMMIT");
+
+  console.log(
+    `Seeded ${count} base schools + ${jawaCount} Pulau Jawa schools into SQLite database successfully.`
+  );
+}
+
+interface JawaRawSchool {
+  npsn: string;
+  nama: string;
+  bentuk: "SMA" | "SMK" | "MA";
+  status: "Negeri" | "Swasta";
+  kabupatenKota: string;
+  provinsi: string;
+  kecamatan: string;
+  alamat: string;
+}
+
+let cachedJawaSchools: JawaRawSchool[] | null = null;
+
+function loadJawaSchools(): JawaRawSchool[] {
+  if (cachedJawaSchools) return cachedJawaSchools;
+  try {
+    const jsonPath = path.join(process.cwd(), "server", "data", "sekolahJawa.json");
+    if (!fs.existsSync(jsonPath)) {
+      console.warn("Pulau Jawa school dataset not found at", jsonPath);
+      cachedJawaSchools = [];
+      return cachedJawaSchools;
+    }
+    const raw = fs.readFileSync(jsonPath, "utf8");
+    cachedJawaSchools = JSON.parse(raw) as JawaRawSchool[];
+  } catch (e) {
+    console.warn("Failed to load Pulau Jawa school dataset:", e);
+    cachedJawaSchools = [];
+  }
+  return cachedJawaSchools;
+}
+
+/**
+ * Inserts the SMA/SMK directory for Pulau Jawa, reusing the caller's
+ * prepared statement and dedup set so it stays consistent with the base seed.
+ */
+function seedJawaSchools(insertStmt: any, seenKeys: Set<string>): number {
+  const schools = loadJawaSchools();
+  let count = 0;
+
+  for (const s of schools) {
+    const nama = (s.nama || "").trim().toUpperCase();
+    if (!nama) continue;
+    const npsn = s.npsn || `8000${Math.floor(1000 + Math.random() * 9000)}`;
+    const kab = s.kabupatenKota || "Kabupaten";
+    const prov = s.provinsi || "Jawa";
+    const bentuk = s.bentuk === "SMK" || s.bentuk === "MA" ? s.bentuk : "SMA";
+    const status = s.status === "Negeri" ? "Negeri" : "Swasta";
+
+    const cleanKab = kab.trim().toUpperCase().replace(/^(KAB\.|KOTA)\s*/, "");
+    const dedupNameKab = `${nama}_${cleanKab}_${prov.trim().toUpperCase()}`;
+    if (seenKeys.has(npsn) || seenKeys.has(dedupNameKab)) continue;
+    seenKeys.add(npsn);
+    seenKeys.add(dedupNameKab);
+
+    const kec = s.kecamatan || "Kecamatan";
+    const alamat = s.alamat || `Jl. Pendidikan, ${kab}`;
+    const slug = nama.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+    insertStmt.run(
+      `sch_${npsn}`,
+      npsn,
+      nama,
+      bentuk,
+      status,
+      alamat,
+      kec, // desa_kelurahan
+      kec,
+      kab,
+      prov,
+      "00000", // kode_pos
+      null, // telepon
+      `info@${slug}.sch.id`,
+      `https://${slug}.sch.id`,
+      slug,
+      "Terbuka",
+      "2026/2027",
+      "Zonasi / Prestasi / Afirmasi",
+      "Ijazah SMP / SKL, Akta Kelahiran, KK",
+      `https://ppdb.${slug}.sch.id`,
+      "Dapodik Kemendikdasmen RI"
+    );
+    count++;
+  }
+
+  return count;
 }
 
 export interface DapodikRawSchool {
