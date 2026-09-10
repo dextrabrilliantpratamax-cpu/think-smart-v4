@@ -1,0 +1,127 @@
+{
+  "entities": {
+    "StudentProfile": {
+      "title": "StudentProfile",
+      "description": "Profil siswa, statistik capaian tenses, bank kata, dan skor latihan UTBK",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Nama lengkap siswa",
+          "maxLength": 100
+        },
+        "educationLevel": {
+          "type": "string",
+          "description": "Jenjang pendidikan (SMA, SMK, MA)",
+          "maxLength": 20
+        },
+        "classGrade": {
+          "type": "string",
+          "description": "Kelas siswa (X, XI, XII)",
+          "maxLength": 10
+        },
+        "major": {
+          "type": "string",
+          "description": "Jurusan (MIPA, IPS, Bahasa, dsb)",
+          "maxLength": 50
+        },
+        "customMajor": {
+          "type": "string",
+          "description": "Jurusan kustom bila memilih lainnya",
+          "maxLength": 50
+        },
+        "schoolName": {
+          "type": "string",
+          "description": "Asal sekolah siswa",
+          "maxLength": 100
+        },
+        "targetUtbkScore": {
+          "type": "string",
+          "description": "Target skor UTBK SNBT",
+          "maxLength": 20
+        },
+        "accessCode": {
+          "type": "string",
+          "description": "Kode akses buku resmi Think Smart",
+          "maxLength": 30
+        },
+        "avatarLetter": {
+          "type": "string",
+          "description": "Inisial huruf foto profil",
+          "maxLength": 5
+        },
+        "avatarUrl": {
+          "type": "string",
+          "description": "URL foto avatar siswa",
+          "maxLength": 1000
+        },
+        "joinedDate": {
+          "type": "string",
+          "description": "Tanggal bergabung",
+          "maxLength": 50
+        },
+        "completedLessons": {
+          "type": "array",
+          "description": "Daftar ID materi yang telah diselesaikan"
+        },
+        "quizScores": {
+          "type": "object",
+          "description": "Peta nilai kuis per materi"
+        },
+        "streakDays": {
+          "type": "number",
+          "description": "Jumlah hari belajar berturut-turut"
+        },
+        "totalStudyMinutes": {
+          "type": "number",
+          "description": "Total menit belajar di aplikasi"
+        },
+        "vocabularyMastered": {
+          "type": "number",
+          "description": "Jumlah kosakata tuntas dihafal"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email Google siswa",
+          "maxLength": 150
+        },
+        "googleUid": {
+          "type": "string",
+          "description": "UID Google siswa",
+          "maxLength": 128
+        },
+        "isGoogleLinked": {
+          "type": "boolean",
+          "description": "Status tautan akun Google"
+        },
+        "lastSyncedAt": {
+          "type": "string",
+          "description": "Waktu sinkronisasi cloud terakhir (ISO)",
+          "maxLength": 50
+        }
+      },
+      "required": ["name"]
+    },
+    "TestConnection": {
+      "title": "TestConnection",
+      "description": "Dokumen uji konektivitas backend Firestore",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Status koneksi backend"
+        }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "StudentProfile",
+      "description": "Koleksi profil dan progres siswa yang terisolasi per UID"
+    },
+    "/test/{testId}": {
+      "schema": "TestConnection",
+      "description": "Koleksi uji konektivitas jaringan backend Firestore"
+    }
+  }
+}

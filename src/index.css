@@ -1,0 +1,1450 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #F1F5F9;
+  color: #0F172A;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.dark body {
+  background-color: #0B0F19;
+  color: #F8FAFC;
+}
+
+/* GPU Acceleration Helpers */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* Custom Ultra-Sleek Dynamic Scrollbar (Default: Thin/Discreet, Expands on Hover/Scroll) */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
+  transition: scrollbar-color 0.2s ease;
+}
+
+.custom-scrollbar:hover,
+.custom-scrollbar.is-scrolling {
+  scrollbar-color: rgba(129, 140, 248, 0.7) rgba(15, 23, 42, 0.2);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 9999px;
+  margin: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+/* Expands subtly on hover */
+.custom-scrollbar:hover::-webkit-scrollbar,
+.custom-scrollbar.is-scrolling::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-track,
+.custom-scrollbar.is-scrolling::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.3);
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb,
+.custom-scrollbar.is-scrolling::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6366F1 0%, #8B5CF6 100%);
+  box-shadow: 0 0 6px rgba(99, 102, 241, 0.3);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #818CF8 0%, #A78BFA 100%) !important;
+  box-shadow: 0 0 10px rgba(129, 140, 248, 0.5) !important;
+}
+
+/* Formal Corporate Font Overrides */
+.font-brand,
+.font-brand-display,
+.font-brand-tech {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 12s linear infinite;
+  will-change: transform;
+}
+
+/* Smooth Infinite Marquee with Hardware Acceleration */
+@keyframes marqueeScroll {
+  0% {
+    transform: translate3d(0%, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes sidebarMarqueeScroll {
+  0% {
+    transform: translate3d(0%, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  width: max-content;
+  animation: marqueeScroll 10s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-slow {
+  display: inline-flex;
+  width: max-content;
+  animation: marqueeScroll 16s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.animate-marquee-slow:hover {
+  animation-play-state: paused;
+}
+
+@keyframes iridescentShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-iridescent-glow {
+  background-size: 200% 200%;
+  animation: iridescentShimmer 6s ease infinite;
+  will-change: background-position;
+}
+
+@keyframes iridescentBorder {
+  0% {
+    border-color: #EC4899;
+  }
+  25% {
+    border-color: #8B5CF6;
+  }
+  50% {
+    border-color: #06B6D4;
+  }
+  75% {
+    border-color: #10B981;
+  }
+  100% {
+    border-color: #EC4899;
+  }
+}
+
+.animate-iridescent-border {
+  animation: iridescentBorder 5s linear infinite;
+}
+
+/* ==========================================================================
+   READING AMBIANCE CUSTOMIZATION (Kustomisasi Suasana Baca)
+   CSS Variables & 2 Dark-Based Visual Presets:
+   1. Night Amber: #170F08 (bg-primary), #211609 (bg-surface), #FFD79A (text-primary), #C9924F (text-secondary), #E8890C (accent), #FFC773 (accent-secondary), #2E2013 (border)
+   2. Cool Mint / Forest: #0E1D16 (bg-primary), #132A1E (bg-surface), #EAF5EE (text-primary), #9FC9AE (text-secondary), #34C77B (accent), #D8B65C (accent-secondary), #1C3527 (border)
+   ========================================================================== */
+
+:root {
+  --bg-primary: #F1F5F9;
+  --bg-surface: #FFFFFF;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --accent: #4F46E5;
+  --accent-secondary: #F59E0B;
+  --border: #E2E8F0;
+}
+
+html.dark {
+  --bg-primary: #0B0F19;
+  --bg-surface: #0F172A;
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --accent: #6366F1;
+  --accent-secondary: #FBBF24;
+  --border: #1E293B;
+}
+
+/* ==========================================
+   1. NIGHT AMBER PRESET
+   Near-zero blue light, warm monochrome palette for night reading
+   ========================================== */
+html[data-ambiance="night_amber"],
+html.ambiance-night_amber {
+  --bg-primary: #170F08;
+  --bg-surface: #211609;
+  --text-primary: #FFD79A;
+  --text-secondary: #C9924F;
+  --accent: #E8890C;
+  --accent-secondary: #FFC773;
+  --border: #2E2013;
+  color-scheme: dark;
+}
+
+html[data-ambiance="night_amber"] body,
+html.ambiance-night_amber body {
+  background-color: #170F08 !important;
+  color: #FFD79A !important;
+}
+
+/* Liquid Glass Chrome for Night Amber */
+html[data-ambiance="night_amber"] header,
+html.ambiance-night_amber header,
+html[data-ambiance="night_amber"] aside,
+html.ambiance-night_amber aside,
+html[data-ambiance="night_amber"] .liquid-glass-chrome,
+html.ambiance-night_amber .liquid-glass-chrome {
+  background: rgba(33, 22, 9, 0.75) !important;
+  backdrop-filter: blur(10px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(140%) !important;
+  border-color: rgba(232, 137, 12, 0.15) !important;
+  color: #FFD79A !important;
+  transform: translateZ(0);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  html[data-ambiance="night_amber"] header,
+  html.ambiance-night_amber header,
+  html[data-ambiance="night_amber"] aside,
+  html.ambiance-night_amber aside,
+  html[data-ambiance="night_amber"] .liquid-glass-chrome,
+  html.ambiance-night_amber .liquid-glass-chrome {
+    background-color: #211609 !important;
+  }
+}
+
+/* Content & Surface Cards (Translucent Warm Obsidian & Amber Frosted Glass) */
+html[data-ambiance="night_amber"] .bg-white,
+html.ambiance-night_amber .bg-white,
+html[data-ambiance="night_amber"] .bg-slate-900,
+html.ambiance-night_amber .bg-slate-900,
+html[data-ambiance="night_amber"] .bg-slate-950,
+html.ambiance-night_amber .bg-slate-950,
+html[data-ambiance="night_amber"] .bg-slate-800,
+html.ambiance-night_amber .bg-slate-800,
+html[data-ambiance="night_amber"] .bg-indigo-950,
+html.ambiance-night_amber .bg-indigo-950,
+html[data-ambiance="night_amber"] .bg-\[\#FAF5E8\],
+html.ambiance-night_amber .bg-\[\#FAF5E8\],
+html[data-ambiance="night_amber"] .bg-\[\#FAF6EE\],
+html.ambiance-night_amber .bg-\[\#FAF6EE\] {
+  background: rgba(30, 20, 9, 0.8) !important;
+  backdrop-filter: blur(8px) saturate(125%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(125%) !important;
+  border-color: rgba(232, 137, 12, 0.2) !important;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 199, 115, 0.06) !important;
+  transform: translateZ(0);
+}
+
+/* Secondary Wells, Inner Containers, Form Elements & Badges */
+html[data-ambiance="night_amber"] .bg-slate-50,
+html.ambiance-night_amber .bg-slate-50,
+html[data-ambiance="night_amber"] .bg-slate-100,
+html.ambiance-night_amber .bg-slate-100,
+html[data-ambiance="night_amber"] .bg-indigo-50,
+html.ambiance-night_amber .bg-indigo-50,
+html[data-ambiance="night_amber"] .bg-amber-50,
+html.ambiance-night_amber .bg-amber-50,
+html[data-ambiance="night_amber"] .bg-amber-100,
+html.ambiance-night_amber .bg-amber-100,
+html[data-ambiance="night_amber"] .bg-purple-50,
+html.ambiance-night_amber .bg-purple-50,
+html[data-ambiance="night_amber"] .bg-blue-50,
+html.ambiance-night_amber .bg-blue-50,
+html[data-ambiance="night_amber"] .bg-emerald-50,
+html.ambiance-night_amber .bg-emerald-50,
+html[data-ambiance="night_amber"] .bg-rose-50,
+html.ambiance-night_amber .bg-rose-50 {
+  background: rgba(20, 13, 6, 0.55) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-color: rgba(232, 137, 12, 0.18) !important;
+}
+
+html[data-ambiance="night_amber"] .border-slate-200,
+html.ambiance-night_amber .border-slate-200,
+html[data-ambiance="night_amber"] .border-slate-300,
+html.ambiance-night_amber .border-slate-300,
+html[data-ambiance="night_amber"] .border-slate-700,
+html.ambiance-night_amber .border-slate-700,
+html[data-ambiance="night_amber"] .border-slate-800,
+html.ambiance-night_amber .border-slate-800,
+html[data-ambiance="night_amber"] .border-indigo-100,
+html.ambiance-night_amber .border-indigo-100,
+html[data-ambiance="night_amber"] .border-indigo-200,
+html.ambiance-night_amber .border-indigo-200,
+html[data-ambiance="night_amber"] .border-indigo-800,
+html.ambiance-night_amber .border-indigo-800,
+html[data-ambiance="night_amber"] .border-indigo-900,
+html.ambiance-night_amber .border-indigo-900,
+html[data-ambiance="night_amber"] hr,
+html.ambiance-night_amber hr {
+  border-color: rgba(232, 137, 12, 0.2) !important;
+}
+
+/* Primary Headings & High Contrast Text */
+html[data-ambiance="night_amber"] h1,
+html.ambiance-night_amber h1,
+html[data-ambiance="night_amber"] h2,
+html.ambiance-night_amber h2,
+html[data-ambiance="night_amber"] h3,
+html.ambiance-night_amber h3,
+html[data-ambiance="night_amber"] h4,
+html.ambiance-night_amber h4,
+html[data-ambiance="night_amber"] h5,
+html.ambiance-night_amber h5,
+html[data-ambiance="night_amber"] .text-slate-900,
+html.ambiance-night_amber .text-slate-900,
+html[data-ambiance="night_amber"] .text-slate-800,
+html.ambiance-night_amber .text-slate-800,
+html[data-ambiance="night_amber"] .text-white,
+html.ambiance-night_amber .text-white {
+  color: #FFD79A !important;
+}
+
+/* Secondary Body & Muted Subtext */
+html[data-ambiance="night_amber"] p,
+html.ambiance-night_amber p,
+html[data-ambiance="night_amber"] .text-slate-700,
+html.ambiance-night_amber .text-slate-700,
+html[data-ambiance="night_amber"] .text-slate-600,
+html.ambiance-night_amber .text-slate-600,
+html[data-ambiance="night_amber"] .text-slate-500,
+html.ambiance-night_amber .text-slate-500,
+html[data-ambiance="night_amber"] .text-slate-400,
+html.ambiance-night_amber .text-slate-400,
+html[data-ambiance="night_amber"] .text-slate-300,
+html.ambiance-night_amber .text-slate-300 {
+  color: #C9924F !important;
+}
+
+/* Input Fields & Forms */
+html[data-ambiance="night_amber"] input,
+html.ambiance-night_amber input,
+html[data-ambiance="night_amber"] textarea,
+html.ambiance-night_amber textarea,
+html[data-ambiance="night_amber"] select,
+html.ambiance-night_amber select {
+  background-color: #170F08 !important;
+  border-color: #2E2013 !important;
+  color: #FFD79A !important;
+}
+
+html[data-ambiance="night_amber"] input::placeholder,
+html.ambiance-night_amber input::placeholder,
+html[data-ambiance="night_amber"] textarea::placeholder,
+html.ambiance-night_amber textarea::placeholder {
+  color: #A3733A !important;
+}
+
+/* Primary Accent CTA & Interactive Links */
+html[data-ambiance="night_amber"] a,
+html.ambiance-night_amber a,
+html[data-ambiance="night_amber"] .text-indigo-600,
+html.ambiance-night_amber .text-indigo-600,
+html[data-ambiance="night_amber"] .text-indigo-500,
+html.ambiance-night_amber .text-indigo-500,
+html[data-ambiance="night_amber"] .text-indigo-400,
+html.ambiance-night_amber .text-indigo-400 {
+  color: #E8890C !important;
+}
+
+html[data-ambiance="night_amber"] .bg-indigo-600,
+html.ambiance-night_amber .bg-indigo-600,
+html[data-ambiance="night_amber"] .bg-indigo-500,
+html.ambiance-night_amber .bg-indigo-500,
+html[data-ambiance="night_amber"] .bg-indigo-700,
+html.ambiance-night_amber .bg-indigo-700 {
+  background-color: #E8890C !important;
+  color: #170F08 !important;
+}
+
+/* Secondary Accent (Streak badges, secondary highlights, tags) */
+html[data-ambiance="night_amber"] .bg-amber-500,
+html.ambiance-night_amber .bg-amber-500,
+html[data-ambiance="night_amber"] .bg-amber-600,
+html.ambiance-night_amber .bg-amber-600 {
+  background-color: #FFC773 !important;
+  color: #170F08 !important;
+}
+
+html[data-ambiance="night_amber"] .text-amber-500,
+html.ambiance-night_amber .text-amber-500,
+html[data-ambiance="night_amber"] .text-amber-400,
+html.ambiance-night_amber .text-amber-400,
+html[data-ambiance="night_amber"] .text-amber-300,
+html.ambiance-night_amber .text-amber-300 {
+  color: #FFC773 !important;
+}
+
+/* Amber Headings & Specific Parchment Text in Night Amber */
+html[data-ambiance="night_amber"] .text-amber-950,
+html.ambiance-night_amber .text-amber-950,
+html[data-ambiance="night_amber"] .text-amber-900,
+html.ambiance-night_amber .text-amber-900,
+html[data-ambiance="night_amber"] .text-amber-800,
+html.ambiance-night_amber .text-amber-800,
+html[data-ambiance="night_amber"] .text-amber-700,
+html.ambiance-night_amber .text-amber-700,
+html[data-ambiance="night_amber"] .text-\[\#332211\],
+html.ambiance-night_amber .text-\[\#332211\],
+html[data-ambiance="night_amber"] .text-\[\#2B1B0F\],
+html.ambiance-night_amber .text-\[\#2B1B0F\],
+html[data-ambiance="night_amber"] .text-\[\#1E1108\],
+html.ambiance-night_amber .text-\[\#1E1108\],
+html[data-ambiance="night_amber"] .text-\[\#2D1C10\],
+html.ambiance-night_amber .text-\[\#2D1C10\] {
+  color: #FFD79A !important;
+}
+
+/* ========================================================
+   MEDIEVAL VOCABULARY & FLASHCARDS IN NIGHT AMBER
+   Translucent Warm Obsidian & Molten Amber Glass (Matches Cool Mint Translucency & Polish)
+   ======================================================== */
+
+/* 1. Flashcard Deck Bar (Top Bar of the Card) */
+html[data-ambiance="night_amber"] .flashcard-deck-bar,
+html.ambiance-night_amber .flashcard-deck-bar {
+  background: rgba(28, 17, 8, 0.75) !important;
+  backdrop-filter: blur(14px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(130%) !important;
+  border: 1px solid rgba(232, 137, 12, 0.28) !important;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 199, 115, 0.12) !important;
+}
+
+/* Card Counter Badge ("Kartu X / Y") */
+html[data-ambiance="night_amber"] .deck-counter-badge,
+html.ambiance-night_amber .deck-counter-badge,
+html[data-ambiance="night_amber"] .flashcard-deck-bar .bg-amber-500\/10,
+html.ambiance-night_amber .flashcard-deck-bar .bg-amber-500\/10 {
+  background: rgba(232, 137, 12, 0.18) !important;
+  border-color: rgba(255, 199, 115, 0.35) !important;
+  color: #FFE2B0 !important;
+  box-shadow: 0 0 12px rgba(232, 137, 12, 0.25) !important;
+}
+
+html[data-ambiance="night_amber"] .deck-counter-badge svg,
+html.ambiance-night_amber .deck-counter-badge svg,
+html[data-ambiance="night_amber"] .flashcard-deck-bar .text-amber-600,
+html.ambiance-night_amber .flashcard-deck-bar .text-amber-600 {
+  color: #FFC773 !important;
+}
+
+/* Category Label in Deck Bar */
+html[data-ambiance="night_amber"] .deck-category-label,
+html.ambiance-night_amber .deck-category-label {
+  color: #C9924F !important;
+}
+
+/* Playback Speed Toggle Bar */
+html[data-ambiance="night_amber"] .deck-speed-toggle,
+html.ambiance-night_amber .deck-speed-toggle,
+html[data-ambiance="night_amber"] .flashcard-deck-bar .bg-slate-100,
+html.ambiance-night_amber .flashcard-deck-bar .bg-slate-100 {
+  background: rgba(18, 11, 5, 0.65) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(232, 137, 12, 0.25) !important;
+}
+
+html[data-ambiance="night_amber"] .deck-speed-toggle button,
+html.ambiance-night_amber .deck-speed-toggle button {
+  color: #C9924F !important;
+}
+
+html[data-ambiance="night_amber"] .deck-speed-toggle .deck-speed-active,
+html.ambiance-night_amber .deck-speed-toggle .deck-speed-active,
+html[data-ambiance="night_amber"] .flashcard-deck-bar button.bg-white,
+html.ambiance-night_amber .flashcard-deck-bar button.bg-white,
+html[data-ambiance="night_amber"] .flashcard-deck-bar button.bg-amber-100,
+html.ambiance-night_amber .flashcard-deck-bar button.bg-amber-100 {
+  background: linear-gradient(135deg, #E8890C, #C26E05) !important;
+  color: #170F08 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 2px 8px rgba(232, 137, 12, 0.45) !important;
+}
+
+/* Bookmark Button in Deck Bar */
+html[data-ambiance="night_amber"] .deck-bookmark-button,
+html.ambiance-night_amber .deck-bookmark-button,
+html[data-ambiance="night_amber"] .flashcard-deck-bar button:not([class*="px-2"]):not([class*="deck-speed"]),
+html.ambiance-night_amber .flashcard-deck-bar button:not([class*="px-2"]):not([class*="deck-speed"]) {
+  background: rgba(28, 17, 8, 0.75) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(232, 137, 12, 0.25) !important;
+  color: #C9924F !important;
+}
+
+html[data-ambiance="night_amber"] .deck-bookmark-button:hover,
+html.ambiance-night_amber .deck-bookmark-button:hover {
+  background: rgba(45, 29, 12, 0.9) !important;
+  border-color: rgba(255, 199, 115, 0.5) !important;
+  color: #FFD79A !important;
+}
+
+html[data-ambiance="night_amber"] .deck-bookmark-button.is-bookmarked,
+html.ambiance-night_amber .deck-bookmark-button.is-bookmarked,
+html[data-ambiance="night_amber"] .flashcard-deck-bar button.bg-amber-50,
+html.ambiance-night_amber .flashcard-deck-bar button.bg-amber-50 {
+  background: rgba(232, 137, 12, 0.22) !important;
+  border-color: #E8890C !important;
+  color: #FFC773 !important;
+  box-shadow: 0 0 14px rgba(232, 137, 12, 0.35) !important;
+}
+
+/* 2. Flashcard 3D Faces (Front & Back) */
+html[data-ambiance="night_amber"] [class*="from-[#FFFDF7]"],
+html.ambiance-night_amber [class*="from-[#FFFDF7]"],
+html[data-ambiance="night_amber"] [class*="from-[#FAF5E8]"],
+html.ambiance-night_amber [class*="from-[#FAF5E8]"] {
+  background: linear-gradient(135deg, rgba(34, 22, 10, 0.88) 0%, rgba(20, 13, 6, 0.94) 100%) !important;
+  backdrop-filter: blur(20px) saturate(125%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(125%) !important;
+  border: 1px solid rgba(232, 137, 12, 0.35) !important;
+  box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 199, 115, 0.22), 0 0 24px -4px rgba(232, 137, 12, 0.15) !important;
+  color: #FFD79A !important;
+}
+
+/* Flashcard Front Title Phrase */
+html[data-ambiance="night_amber"] [class*="from-[#FFFDF7]"] h2,
+html.ambiance-night_amber [class*="from-[#FFFDF7]"] h2 {
+  color: #FFF8E7 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8), 0 0 24px rgba(232, 137, 12, 0.3) !important;
+}
+
+/* Vintage Ornamental Corner Accents */
+html[data-ambiance="night_amber"] [class*="from-[#FFFDF7]"] .border-amber-600\/40,
+html.ambiance-night_amber [class*="from-[#FFFDF7]"] .border-amber-600\/40,
+html[data-ambiance="night_amber"] [class*="from-[#FAF5E8]"] .border-amber-600\/40,
+html.ambiance-night_amber [class*="from-[#FAF5E8]"] .border-amber-600\/40 {
+  border-color: rgba(255, 199, 115, 0.4) !important;
+}
+
+/* Category Badge inside Card Header */
+html[data-ambiance="night_amber"] .bg-amber-900\/10,
+html.ambiance-night_amber .bg-amber-900\/10 {
+  background: rgba(232, 137, 12, 0.18) !important;
+  border: 1px solid rgba(255, 199, 115, 0.35) !important;
+  color: #FFE2B0 !important;
+}
+
+/* Audio Pronunciation Button on Front Card */
+html[data-ambiance="night_amber"] .bg-amber-100.hover\:bg-amber-200,
+html.ambiance-night_amber .bg-amber-100.hover\:bg-amber-200 {
+  background: rgba(232, 137, 12, 0.2) !important;
+  border: 1px solid rgba(255, 199, 115, 0.35) !important;
+  color: #FFE6BA !important;
+}
+
+/* Flashcard IPA & Phonetic Badges */
+html[data-ambiance="night_amber"] .bg-amber-950\/5,
+html.ambiance-night_amber .bg-amber-950\/5,
+html[data-ambiance="night_amber"] .bg-amber-800\/10,
+html.ambiance-night_amber .bg-amber-800\/10 {
+  background: rgba(232, 137, 12, 0.16) !important;
+  border: 1px solid rgba(255, 199, 115, 0.3) !important;
+  color: #FFE6BA !important;
+}
+
+/* Front Card Instruction Footer */
+html[data-ambiance="night_amber"] .border-amber-900\/10,
+html.ambiance-night_amber .border-amber-900\/10 {
+  border-color: rgba(232, 137, 12, 0.2) !important;
+}
+
+html[data-ambiance="night_amber"] .text-amber-800\/85,
+html.ambiance-night_amber .text-amber-800\/85 {
+  color: #C9924F !important;
+}
+
+/* Flashcard Back Face Header */
+html[data-ambiance="night_amber"] .border-amber-900\/15,
+html.ambiance-night_amber .border-amber-900\/15 {
+  border-color: rgba(232, 137, 12, 0.22) !important;
+}
+
+/* Flashcard Indonesian Translation Box (Back Face) */
+html[data-ambiance="night_amber"] .bg-white\/90,
+html.ambiance-night_amber .bg-white\/90 {
+  background: rgba(42, 26, 11, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(232, 137, 12, 0.3) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+html[data-ambiance="night_amber"] .bg-white\/90 .text-\[\#1E1108\],
+html.ambiance-night_amber .bg-white\/90 .text-\[\#1E1108\] {
+  color: #FFD79A !important;
+}
+
+/* Archaic Vocabulary Breakdown Pills & Notes */
+html[data-ambiance="night_amber"] .bg-amber-900\/5,
+html.ambiance-night_amber .bg-amber-900\/5 {
+  background: rgba(24, 15, 7, 0.72) !important;
+  border: 1px solid rgba(232, 137, 12, 0.22) !important;
+  color: #FFE4B5 !important;
+}
+
+html[data-ambiance="night_amber"] .bg-amber-200\/60,
+html.ambiance-night_amber .bg-amber-200\/60 {
+  background: rgba(232, 137, 12, 0.3) !important;
+  color: #FFD79A !important;
+}
+
+/* Historical Context Box */
+html[data-ambiance="night_amber"] .bg-amber-600\/10,
+html.ambiance-night_amber .bg-amber-600\/10 {
+  background: rgba(232, 137, 12, 0.14) !important;
+  border: 1px solid rgba(232, 137, 12, 0.32) !important;
+  color: #FFE6BA !important;
+}
+
+/* 3. Bottom 3-Button Control Bar */
+html[data-ambiance="night_amber"] .deck-btn-prev,
+html.ambiance-night_amber .deck-btn-prev,
+html[data-ambiance="night_amber"] .flashcard-bottom-controls .bg-white,
+html.ambiance-night_amber .flashcard-bottom-controls .bg-white {
+  background: rgba(30, 20, 9, 0.78) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(232, 137, 12, 0.28) !important;
+  color: #FFD79A !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 199, 115, 0.08) !important;
+}
+
+html[data-ambiance="night_amber"] .deck-btn-prev:hover,
+html.ambiance-night_amber .deck-btn-prev:hover {
+  background: rgba(45, 29, 12, 0.9) !important;
+  border-color: rgba(255, 199, 115, 0.5) !important;
+  color: #FFFFFF !important;
+}
+
+html[data-ambiance="night_amber"] .deck-btn-master:not(.is-mastered),
+html.ambiance-night_amber .deck-btn-master:not(.is-mastered),
+html[data-ambiance="night_amber"] .flashcard-bottom-controls .bg-amber-600,
+html.ambiance-night_amber .flashcard-bottom-controls .bg-amber-600 {
+  background: linear-gradient(135deg, #E8890C, #B86705) !important;
+  border: 1px solid rgba(255, 199, 115, 0.45) !important;
+  color: #170F08 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 18px rgba(232, 137, 12, 0.4) !important;
+}
+
+html[data-ambiance="night_amber"] .deck-btn-next,
+html.ambiance-night_amber .deck-btn-next,
+html[data-ambiance="night_amber"] .flashcard-bottom-controls .bg-slate-900,
+html.ambiance-night_amber .flashcard-bottom-controls .bg-slate-900 {
+  background: rgba(20, 13, 6, 0.85) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(232, 137, 12, 0.35) !important;
+  color: #FFD79A !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 199, 115, 0.1) !important;
+}
+
+html[data-ambiance="night_amber"] .deck-btn-next:hover,
+html.ambiance-night_amber .deck-btn-next:hover {
+  background: rgba(34, 22, 10, 0.95) !important;
+  border-color: rgba(255, 199, 115, 0.6) !important;
+  color: #FFFFFF !important;
+}
+
+/* 4. Symmetrical Mode Navigation Tabs (VocabularyView.tsx) */
+html[data-ambiance="night_amber"] .flashcard-mode-tabs-bar,
+html.ambiance-night_amber .flashcard-mode-tabs-bar {
+  border-color: rgba(232, 137, 12, 0.22) !important;
+}
+
+html[data-ambiance="night_amber"] .flashcard-mode-tabs-bar button.bg-amber-800,
+html.ambiance-night_amber .flashcard-mode-tabs-bar button.bg-amber-800 {
+  background: linear-gradient(135deg, #E8890C, #B86705) !important;
+  border: 1px solid rgba(255, 199, 115, 0.45) !important;
+  color: #170F08 !important;
+  box-shadow: 0 4px 16px rgba(232, 137, 12, 0.35) !important;
+  font-weight: 800 !important;
+}
+
+html[data-ambiance="night_amber"] .flashcard-mode-tabs-bar button.bg-white,
+html.ambiance-night_amber .flashcard-mode-tabs-bar button.bg-white {
+  background: rgba(20, 13, 6, 0.65) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(232, 137, 12, 0.2) !important;
+  color: #C9924F !important;
+}
+
+html[data-ambiance="night_amber"] .flashcard-mode-tabs-bar button.bg-white:hover,
+html.ambiance-night_amber .flashcard-mode-tabs-bar button.bg-white:hover {
+  background: rgba(34, 22, 10, 0.85) !important;
+  border-color: rgba(232, 137, 12, 0.35) !important;
+  color: #FFD79A !important;
+}
+
+/* ==========================================
+   2. COOL MINT / FOREST PRESET
+   Frosted Glass & Translucent Pine-Mist Palette (Samar, Transparan & Tenang)
+   ========================================== */
+html[data-ambiance="cool_mint"],
+html.ambiance-cool_mint {
+  --bg-primary: #08140F;
+  --bg-surface: rgba(14, 34, 25, 0.65);
+  --text-primary: #F0FDF4;
+  --text-secondary: #98C8AA;
+  --accent: #10B981;
+  --accent-secondary: #34D399;
+  --border: rgba(52, 211, 153, 0.16);
+  color-scheme: dark;
+}
+
+html[data-ambiance="cool_mint"] body,
+html.ambiance-cool_mint body {
+  background: radial-gradient(circle at 50% 0%, #0d261b 0%, #08140f 65%, #050d0a 100%) fixed !important;
+  background-color: #08140F !important;
+  color: #F0FDF4 !important;
+}
+
+/* Frosted Liquid Glass Chrome for Header, Navigation Bars, Sidebar, Footers & Quickbars */
+html[data-ambiance="cool_mint"] header,
+html.ambiance-cool_mint header,
+html[data-ambiance="cool_mint"] aside,
+html.ambiance-cool_mint aside,
+html[data-ambiance="cool_mint"] .liquid-glass-chrome,
+html.ambiance-cool_mint .liquid-glass-chrome,
+html[data-ambiance="cool_mint"] .bg-\[\#1E293B\],
+html.ambiance-cool_mint .bg-\[\#1E293B\] {
+  background: rgba(10, 24, 18, 0.82) !important;
+  backdrop-filter: blur(10px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
+  border-color: rgba(52, 211, 153, 0.18) !important;
+  color: #F0FDF4 !important;
+  box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  transform: translateZ(0);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  html[data-ambiance="cool_mint"] header,
+  html.ambiance-cool_mint header,
+  html[data-ambiance="cool_mint"] aside,
+  html.ambiance-cool_mint aside,
+  html[data-ambiance="cool_mint"] .liquid-glass-chrome,
+  html.ambiance-cool_mint .liquid-glass-chrome {
+    background-color: #0e2017 !important;
+  }
+}
+
+/* Samar & Transparan Frosted Glass Content Cards */
+html[data-ambiance="cool_mint"] .bg-white,
+html.ambiance-cool_mint .bg-white,
+html[data-ambiance="cool_mint"] .bg-slate-900,
+html.ambiance-cool_mint .bg-slate-900,
+html[data-ambiance="cool_mint"] .bg-slate-950,
+html.ambiance-cool_mint .bg-slate-950,
+html[data-ambiance="cool_mint"] .bg-slate-800,
+html.ambiance-cool_mint .bg-slate-800,
+html[data-ambiance="cool_mint"] .bg-indigo-950,
+html.ambiance-cool_mint .bg-indigo-950,
+html[data-ambiance="cool_mint"] .bg-\[\#FAF5E8\],
+html.ambiance-cool_mint .bg-\[\#FAF5E8\],
+html[data-ambiance="cool_mint"] .bg-\[\#FAF6EE\],
+html.ambiance-cool_mint .bg-\[\#FAF6EE\] {
+  background: rgba(12, 28, 20, 0.8) !important;
+  backdrop-filter: blur(8px) saturate(115%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(115%) !important;
+  border-color: rgba(52, 211, 153, 0.18) !important;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  transform: translateZ(0);
+}
+
+/* Faint Secondary Wells, Inner Sections, Form Fields & Interactive Tabs */
+html[data-ambiance="cool_mint"] .bg-slate-50,
+html.ambiance-cool_mint .bg-slate-50,
+html[data-ambiance="cool_mint"] .bg-slate-100,
+html.ambiance-cool_mint .bg-slate-100,
+html[data-ambiance="cool_mint"] .bg-indigo-50,
+html.ambiance-cool_mint .bg-indigo-50,
+html[data-ambiance="cool_mint"] .bg-amber-50,
+html.ambiance-cool_mint .bg-amber-50,
+html[data-ambiance="cool_mint"] .bg-amber-100,
+html.ambiance-cool_mint .bg-amber-100,
+html[data-ambiance="cool_mint"] .bg-purple-50,
+html.ambiance-cool_mint .bg-purple-50,
+html[data-ambiance="cool_mint"] .bg-blue-50,
+html.ambiance-cool_mint .bg-blue-50,
+html[data-ambiance="cool_mint"] .bg-emerald-50,
+html.ambiance-cool_mint .bg-emerald-50,
+html[data-ambiance="cool_mint"] .bg-rose-50,
+html.ambiance-cool_mint .bg-rose-50 {
+  background: rgba(8, 20, 14, 0.55) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-color: rgba(52, 211, 153, 0.16) !important;
+}
+
+/* Semi-Transparent Luminous Borders & Separators */
+html[data-ambiance="cool_mint"] .border-slate-100,
+html.ambiance-cool_mint .border-slate-100,
+html[data-ambiance="cool_mint"] .border-slate-200,
+html.ambiance-cool_mint .border-slate-200,
+html[data-ambiance="cool_mint"] .border-slate-300,
+html.ambiance-cool_mint .border-slate-300,
+html[data-ambiance="cool_mint"] .border-slate-700,
+html.ambiance-cool_mint .border-slate-700,
+html[data-ambiance="cool_mint"] .border-slate-800,
+html.ambiance-cool_mint .border-slate-800,
+html[data-ambiance="cool_mint"] .border-indigo-100,
+html.ambiance-cool_mint .border-indigo-100,
+html[data-ambiance="cool_mint"] .border-indigo-200,
+html.ambiance-cool_mint .border-indigo-200,
+html[data-ambiance="cool_mint"] .border-indigo-800,
+html.ambiance-cool_mint .border-indigo-800,
+html[data-ambiance="cool_mint"] .border-indigo-900,
+html.ambiance-cool_mint .border-indigo-900,
+html[data-ambiance="cool_mint"] .border-amber-200,
+html.ambiance-cool_mint .border-amber-200,
+html[data-ambiance="cool_mint"] .border-amber-300,
+html.ambiance-cool_mint .border-amber-300,
+html[data-ambiance="cool_mint"] .border-purple-200,
+html.ambiance-cool_mint .border-purple-200,
+html[data-ambiance="cool_mint"] .border-blue-200,
+html.ambiance-cool_mint .border-blue-200,
+html[data-ambiance="cool_mint"] .border-emerald-200,
+html.ambiance-cool_mint .border-emerald-200,
+html[data-ambiance="cool_mint"] .border-rose-200,
+html.ambiance-cool_mint .border-rose-200,
+html[data-ambiance="cool_mint"] .border-\[\#DEC49C\],
+html.ambiance-cool_mint .border-\[\#DEC49C\],
+html[data-ambiance="cool_mint"] hr,
+html.ambiance-cool_mint hr {
+  border-color: rgba(52, 211, 153, 0.18) !important;
+}
+
+/* High Contrast Luminous Soft-White Headings & Primary Text */
+html[data-ambiance="cool_mint"] h1,
+html.ambiance-cool_mint h1,
+html[data-ambiance="cool_mint"] h2,
+html.ambiance-cool_mint h2,
+html[data-ambiance="cool_mint"] h3,
+html.ambiance-cool_mint h3,
+html[data-ambiance="cool_mint"] h4,
+html.ambiance-cool_mint h4,
+html[data-ambiance="cool_mint"] h5,
+html.ambiance-cool_mint h5,
+html[data-ambiance="cool_mint"] .text-slate-900,
+html.ambiance-cool_mint .text-slate-900,
+html[data-ambiance="cool_mint"] .text-slate-800,
+html.ambiance-cool_mint .text-slate-800,
+html[data-ambiance="cool_mint"] .text-white,
+html.ambiance-cool_mint .text-white,
+html[data-ambiance="cool_mint"] .text-\[\#332211\],
+html.ambiance-cool_mint .text-\[\#332211\],
+html[data-ambiance="cool_mint"] .text-\[\#2B1B0F\],
+html.ambiance-cool_mint .text-\[\#2B1B0F\],
+html[data-ambiance="cool_mint"] .text-\[\#1E1108\],
+html.ambiance-cool_mint .text-\[\#1E1108\],
+html[data-ambiance="cool_mint"] .text-\[\#2D1C10\],
+html.ambiance-cool_mint .text-\[\#2D1C10\] {
+  color: #F0FDF4 !important;
+}
+
+/* Soothing Sage Secondary & Subtitle Typography */
+html[data-ambiance="cool_mint"] p,
+html.ambiance-cool_mint p,
+html[data-ambiance="cool_mint"] .text-slate-700,
+html.ambiance-cool_mint .text-slate-700,
+html[data-ambiance="cool_mint"] .text-slate-600,
+html.ambiance-cool_mint .text-slate-600,
+html[data-ambiance="cool_mint"] .text-slate-500,
+html.ambiance-cool_mint .text-slate-500,
+html[data-ambiance="cool_mint"] .text-slate-400,
+html.ambiance-cool_mint .text-slate-400,
+html[data-ambiance="cool_mint"] .text-slate-300,
+html.ambiance-cool_mint .text-slate-300,
+html[data-ambiance="cool_mint"] .text-amber-950,
+html.ambiance-cool_mint .text-amber-950,
+html[data-ambiance="cool_mint"] .text-amber-900,
+html.ambiance-cool_mint .text-amber-900,
+html[data-ambiance="cool_mint"] .text-amber-800,
+html.ambiance-cool_mint .text-amber-800,
+html[data-ambiance="cool_mint"] .text-indigo-950,
+html.ambiance-cool_mint .text-indigo-950,
+html[data-ambiance="cool_mint"] .text-emerald-950,
+html.ambiance-cool_mint .text-emerald-950,
+html[data-ambiance="cool_mint"] .text-rose-950,
+html.ambiance-cool_mint .text-rose-950,
+html[data-ambiance="cool_mint"] .text-purple-950,
+html.ambiance-cool_mint .text-purple-950 {
+  color: #98C8AA !important;
+}
+
+/* ========================================================
+   MEDIEVAL VOCABULARY & FLASHCARDS IN COOL MINT
+   ======================================================== */
+/* 1. Flashcard Deck Bar (Top Bar of the Card) */
+html[data-ambiance="cool_mint"] .flashcard-deck-bar,
+html.ambiance-cool_mint .flashcard-deck-bar {
+  background: rgba(12, 28, 20, 0.75) !important;
+  backdrop-filter: blur(14px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(120%) !important;
+  border: 1px solid rgba(52, 211, 153, 0.28) !important;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(52, 211, 153, 0.12) !important;
+}
+
+/* Card Counter Badge ("Kartu X / Y") */
+html[data-ambiance="cool_mint"] .deck-counter-badge,
+html.ambiance-cool_mint .deck-counter-badge,
+html[data-ambiance="cool_mint"] .flashcard-deck-bar .bg-amber-500\/10,
+html.ambiance-cool_mint .flashcard-deck-bar .bg-amber-500\/10 {
+  background: rgba(16, 185, 129, 0.18) !important;
+  border-color: rgba(52, 211, 153, 0.35) !important;
+  color: #D1FAE5 !important;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.25) !important;
+}
+
+html[data-ambiance="cool_mint"] .deck-counter-badge svg,
+html.ambiance-cool_mint .deck-counter-badge svg,
+html[data-ambiance="cool_mint"] .flashcard-deck-bar .text-amber-600,
+html.ambiance-cool_mint .flashcard-deck-bar .text-amber-600 {
+  color: #34D399 !important;
+}
+
+/* Category Label in Deck Bar */
+html[data-ambiance="cool_mint"] .deck-category-label,
+html.ambiance-cool_mint .deck-category-label {
+  color: #98C8AA !important;
+}
+
+/* Playback Speed Toggle Bar */
+html[data-ambiance="cool_mint"] .deck-speed-toggle,
+html.ambiance-cool_mint .deck-speed-toggle,
+html[data-ambiance="cool_mint"] .flashcard-deck-bar .bg-slate-100,
+html.ambiance-cool_mint .flashcard-deck-bar .bg-slate-100 {
+  background: rgba(8, 20, 14, 0.65) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(52, 211, 153, 0.25) !important;
+}
+
+html[data-ambiance="cool_mint"] .deck-speed-toggle button,
+html.ambiance-cool_mint .deck-speed-toggle button {
+  color: #98C8AA !important;
+}
+
+html[data-ambiance="cool_mint"] .deck-speed-toggle .deck-speed-active,
+html.ambiance-cool_mint .deck-speed-toggle .deck-speed-active,
+html[data-ambiance="cool_mint"] .flashcard-deck-bar button.bg-white,
+html.ambiance-cool_mint .flashcard-deck-bar button.bg-white,
+html[data-ambiance="cool_mint"] .flashcard-deck-bar button.bg-amber-100,
+html.ambiance-cool_mint .flashcard-deck-bar button.bg-amber-100 {
+  background: linear-gradient(135deg, #10B981, #059669) !important;
+  color: #061A12 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.45) !important;
+}
+
+/* Bookmark Button in Deck Bar */
+html[data-ambiance="cool_mint"] .deck-bookmark-button,
+html.ambiance-cool_mint .deck-bookmark-button,
+html[data-ambiance="cool_mint"] .flashcard-deck-bar button:not([class*="px-2"]):not([class*="deck-speed"]),
+html.ambiance-cool_mint .flashcard-deck-bar button:not([class*="px-2"]):not([class*="deck-speed"]) {
+  background: rgba(12, 28, 20, 0.75) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(52, 211, 153, 0.25) !important;
+  color: #98C8AA !important;
+}
+
+html[data-ambiance="cool_mint"] .deck-bookmark-button:hover,
+html.ambiance-cool_mint .deck-bookmark-button:hover {
+  background: rgba(20, 48, 35, 0.9) !important;
+  border-color: rgba(52, 211, 153, 0.5) !important;
+  color: #D1FAE5 !important;
+}
+
+html[data-ambiance="cool_mint"] .deck-bookmark-button.is-bookmarked,
+html.ambiance-cool_mint .deck-bookmark-button.is-bookmarked,
+html[data-ambiance="cool_mint"] .flashcard-deck-bar button.bg-amber-50,
+html.ambiance-cool_mint .flashcard-deck-bar button.bg-amber-50 {
+  background: rgba(16, 185, 129, 0.22) !important;
+  border-color: #10B981 !important;
+  color: #34D399 !important;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.35) !important;
+}
+
+/* 2. Flashcard 3D Faces (Front & Back) */
+html[data-ambiance="cool_mint"] [class*="from-[#FFFDF7]"],
+html.ambiance-cool_mint [class*="from-[#FFFDF7]"],
+html[data-ambiance="cool_mint"] [class*="from-[#FAF5E8]"],
+html.ambiance-cool_mint [class*="from-[#FAF5E8]"] {
+  background: linear-gradient(135deg, rgba(14, 38, 28, 0.88) 0%, rgba(8, 22, 16, 0.94) 100%) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-color: rgba(52, 211, 153, 0.35) !important;
+  box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(52, 211, 153, 0.2) !important;
+  color: #F0FDF4 !important;
+}
+
+/* Flashcard Front Title Phrase */
+html[data-ambiance="cool_mint"] [class*="from-[#FFFDF7]"] h2,
+html.ambiance-cool_mint [class*="from-[#FFFDF7]"] h2 {
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* Flashcard IPA & Phonetic Badges */
+html[data-ambiance="cool_mint"] .bg-amber-950\/5,
+html.ambiance-cool_mint .bg-amber-950\/5,
+html[data-ambiance="cool_mint"] .bg-amber-800\/10,
+html.ambiance-cool_mint .bg-amber-800\/10 {
+  background: rgba(16, 185, 129, 0.15) !important;
+  border-color: rgba(52, 211, 153, 0.3) !important;
+  color: #D1FAE5 !important;
+}
+
+/* Flashcard Indonesian Translation Box (Back Face) */
+html[data-ambiance="cool_mint"] .bg-white\/90,
+html.ambiance-cool_mint .bg-white\/90 {
+  background: rgba(18, 46, 34, 0.85) !important;
+  border-color: rgba(52, 211, 153, 0.3) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+html[data-ambiance="cool_mint"] .bg-white\/90 .text-\[\#1E1108\],
+html.ambiance-cool_mint .bg-white\/90 .text-\[\#1E1108\] {
+  color: #6EE7B7 !important;
+}
+
+/* Archaic Vocabulary Breakdown Pills & Notes */
+html[data-ambiance="cool_mint"] .bg-amber-900\/5,
+html.ambiance-cool_mint .bg-amber-900\/5 {
+  background: rgba(12, 32, 23, 0.7) !important;
+  border-color: rgba(52, 211, 153, 0.22) !important;
+  color: #ECFDF5 !important;
+}
+
+html[data-ambiance="cool_mint"] .bg-amber-200\/60,
+html.ambiance-cool_mint .bg-amber-200\/60 {
+  background: rgba(52, 211, 153, 0.25) !important;
+  color: #6EE7B7 !important;
+}
+
+/* Historical Context Box */
+html[data-ambiance="cool_mint"] .bg-amber-600\/10,
+html.ambiance-cool_mint .bg-amber-600\/10 {
+  background: rgba(216, 182, 92, 0.14) !important;
+  border-color: rgba(216, 182, 92, 0.35) !important;
+  color: #FEF3C7 !important;
+}
+
+/* 3. Bottom 3-Button Control Bar */
+html[data-ambiance="cool_mint"] .deck-btn-prev,
+html.ambiance-cool_mint .deck-btn-prev,
+html[data-ambiance="cool_mint"] .flashcard-bottom-controls .bg-white,
+html.ambiance-cool_mint .flashcard-bottom-controls .bg-white {
+  background: rgba(12, 28, 20, 0.78) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(52, 211, 153, 0.28) !important;
+  color: #F0FDF4 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(52, 211, 153, 0.08) !important;
+}
+
+html[data-ambiance="cool_mint"] .deck-btn-prev:hover,
+html.ambiance-cool_mint .deck-btn-prev:hover {
+  background: rgba(20, 48, 35, 0.9) !important;
+  border-color: rgba(52, 211, 153, 0.5) !important;
+  color: #FFFFFF !important;
+}
+
+html[data-ambiance="cool_mint"] .deck-btn-master:not(.is-mastered),
+html.ambiance-cool_mint .deck-btn-master:not(.is-mastered),
+html[data-ambiance="cool_mint"] .flashcard-bottom-controls .bg-amber-600,
+html.ambiance-cool_mint .flashcard-bottom-controls .bg-amber-600 {
+  background: linear-gradient(135deg, #10B981, #059669) !important;
+  border: 1px solid rgba(52, 211, 153, 0.45) !important;
+  color: #061A12 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.4) !important;
+}
+
+html[data-ambiance="cool_mint"] .deck-btn-next,
+html.ambiance-cool_mint .deck-btn-next,
+html[data-ambiance="cool_mint"] .flashcard-bottom-controls .bg-slate-900,
+html.ambiance-cool_mint .flashcard-bottom-controls .bg-slate-900 {
+  background: rgba(8, 20, 14, 0.85) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(52, 211, 153, 0.35) !important;
+  color: #F0FDF4 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(52, 211, 153, 0.1) !important;
+}
+
+html[data-ambiance="cool_mint"] .deck-btn-next:hover,
+html.ambiance-cool_mint .deck-btn-next:hover {
+  background: rgba(14, 38, 26, 0.95) !important;
+  border-color: rgba(52, 211, 153, 0.6) !important;
+  color: #FFFFFF !important;
+}
+
+/* 4. Symmetrical Mode Navigation Tabs */
+html[data-ambiance="cool_mint"] .flashcard-mode-tabs-bar,
+html.ambiance-cool_mint .flashcard-mode-tabs-bar {
+  border-color: rgba(52, 211, 153, 0.22) !important;
+}
+
+html[data-ambiance="cool_mint"] .flashcard-mode-tabs-bar button.bg-amber-800,
+html.ambiance-cool_mint .flashcard-mode-tabs-bar button.bg-amber-800 {
+  background: linear-gradient(135deg, #10B981, #059669) !important;
+  border: 1px solid rgba(52, 211, 153, 0.45) !important;
+  color: #061A12 !important;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35) !important;
+  font-weight: 800 !important;
+}
+
+html[data-ambiance="cool_mint"] .flashcard-mode-tabs-bar button.bg-white,
+html.ambiance-cool_mint .flashcard-mode-tabs-bar button.bg-white {
+  background: rgba(8, 20, 14, 0.65) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(52, 211, 153, 0.2) !important;
+  color: #98C8AA !important;
+}
+
+html[data-ambiance="cool_mint"] .flashcard-mode-tabs-bar button.bg-white:hover,
+html.ambiance-cool_mint .flashcard-mode-tabs-bar button.bg-white:hover {
+  background: rgba(14, 38, 26, 0.85) !important;
+  border-color: rgba(52, 211, 153, 0.35) !important;
+  color: #F0FDF4 !important;
+}
+
+/* ========================================================
+   UTBK CBT EXAM & QUESTIONS IN COOL MINT
+   ======================================================== */
+/* UTBK Passage (Teks Bacaan) */
+html[data-ambiance="cool_mint"] .bg-slate-50\/90,
+html.ambiance-cool_mint .bg-slate-50\/90 {
+  background: rgba(8, 22, 16, 0.75) !important;
+  border-color: rgba(52, 211, 153, 0.24) !important;
+  color: #ECFDF5 !important;
+}
+
+/* UTBK Options (Pilihan Jawaban A, B, C, D, E) */
+html[data-ambiance="cool_mint"] button.min-h-\[50px\],
+html.ambiance-cool_mint button.min-h-\[50px\] {
+  background: rgba(12, 30, 22, 0.65) !important;
+  border-color: rgba(52, 211, 153, 0.2) !important;
+  color: #E2E8F0 !important;
+}
+
+html[data-ambiance="cool_mint"] button.min-h-\[50px\]:hover,
+html.ambiance-cool_mint button.min-h-\[50px\]:hover {
+  background: rgba(16, 185, 129, 0.16) !important;
+  border-color: rgba(52, 211, 153, 0.45) !important;
+  color: #FFFFFF !important;
+}
+
+/* Selected Option in UTBK */
+html[data-ambiance="cool_mint"] button.min-h-\[50px\].bg-indigo-50,
+html.ambiance-cool_mint button.min-h-\[50px\].bg-indigo-50 {
+  background: rgba(16, 185, 129, 0.26) !important;
+  border-color: #34D399 !important;
+  color: #F0FDF4 !important;
+  box-shadow: 0 0 18px rgba(52, 211, 153, 0.25) !important;
+}
+
+/* Letter Pill (A, B, C, D, E) */
+html[data-ambiance="cool_mint"] button.min-h-\[50px\] span.bg-slate-100,
+html.ambiance-cool_mint button.min-h-\[50px\] span.bg-slate-100 {
+  background: rgba(52, 211, 153, 0.18) !important;
+  color: #6EE7B7 !important;
+  border: 1px solid rgba(52, 211, 153, 0.25) !important;
+}
+
+html[data-ambiance="cool_mint"] button.min-h-\[50px\] span.bg-indigo-600,
+html.ambiance-cool_mint button.min-h-\[50px\] span.bg-indigo-600 {
+  background: #10B981 !important;
+  color: #FFFFFF !important;
+}
+
+/* UTBK Sidebar Navigation Buttons (1-50) */
+html[data-ambiance="cool_mint"] .grid-cols-5 button.bg-slate-100,
+html.ambiance-cool_mint .grid-cols-5 button.bg-slate-100,
+html[data-ambiance="cool_mint"] .grid-cols-5 button.bg-slate-50,
+html.ambiance-cool_mint .grid-cols-5 button.bg-slate-50 {
+  background: rgba(14, 36, 26, 0.7) !important;
+  border-color: rgba(52, 211, 153, 0.22) !important;
+  color: #A7F3D0 !important;
+}
+
+html[data-ambiance="cool_mint"] .grid-cols-5 button.bg-slate-100:hover,
+html.ambiance-cool_mint .grid-cols-5 button.bg-slate-100:hover {
+  background: rgba(16, 185, 129, 0.25) !important;
+  color: #FFFFFF !important;
+}
+
+html[data-ambiance="cool_mint"] .grid-cols-5 button.bg-indigo-600,
+html.ambiance-cool_mint .grid-cols-5 button.bg-indigo-600 {
+  background: #10B981 !important;
+  color: #FFFFFF !important;
+  border-color: #34D399 !important;
+}
+
+html[data-ambiance="cool_mint"] .grid-cols-5 button.bg-emerald-500,
+html.ambiance-cool_mint .grid-cols-5 button.bg-emerald-500 {
+  background: rgba(5, 150, 105, 0.8) !important;
+  color: #ECFDF5 !important;
+  border-color: #10B981 !important;
+}
+
+html[data-ambiance="cool_mint"] .grid-cols-5 button.bg-amber-400,
+html.ambiance-cool_mint .grid-cols-5 button.bg-amber-400 {
+  background: rgba(217, 119, 6, 0.85) !important;
+  color: #FFFBEB !important;
+  border-color: #F59E0B !important;
+}
+
+/* UTBK Pembahasan Tab (Kunci Jawaban, Opsi & Analisis AI) */
+html[data-ambiance="cool_mint"] .bg-emerald-50.border-emerald-400,
+html.ambiance-cool_mint .bg-emerald-50.border-emerald-400 {
+  background: rgba(5, 150, 105, 0.28) !important;
+  border-color: rgba(52, 211, 153, 0.55) !important;
+  color: #ECFDF5 !important;
+}
+
+html[data-ambiance="cool_mint"] .bg-rose-50.border-rose-300,
+html.ambiance-cool_mint .bg-rose-50.border-rose-300 {
+  background: rgba(225, 29, 72, 0.22) !important;
+  border-color: rgba(244, 63, 94, 0.5) !important;
+  color: #FFE4E6 !important;
+}
+
+html[data-ambiance="cool_mint"] .bg-indigo-50\/80,
+html.ambiance-cool_mint .bg-indigo-50\/80,
+html[data-ambiance="cool_mint"] .bg-purple-50\/80,
+html.ambiance-cool_mint .bg-purple-50\/80 {
+  background: rgba(14, 38, 28, 0.75) !important;
+  border-color: rgba(52, 211, 153, 0.28) !important;
+  color: #E2E8F0 !important;
+}
+
+html[data-ambiance="cool_mint"] .bg-indigo-50\/80 .text-indigo-950,
+html.ambiance-cool_mint .bg-indigo-50\/80 .text-indigo-950,
+html[data-ambiance="cool_mint"] .bg-purple-50\/80 .text-purple-900,
+html.ambiance-cool_mint .bg-purple-50\/80 .text-purple-900 {
+  color: #6EE7B7 !important;
+}
+
+html[data-ambiance="cool_mint"] .bg-indigo-50\/80 p,
+html.ambiance-cool_mint .bg-indigo-50\/80 p,
+html[data-ambiance="cool_mint"] .bg-purple-50\/80 p,
+html.ambiance-cool_mint .bg-purple-50\/80 p {
+  color: #D1FAE5 !important;
+}
+
+/* Frosted Form Inputs & Dropdowns */
+html[data-ambiance="cool_mint"] input,
+html.ambiance-cool_mint input,
+html[data-ambiance="cool_mint"] textarea,
+html.ambiance-cool_mint textarea,
+html[data-ambiance="cool_mint"] select,
+html.ambiance-cool_mint select {
+  background: rgba(8, 20, 14, 0.6) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-color: rgba(52, 211, 153, 0.2) !important;
+  color: #F0FDF4 !important;
+}
+
+html[data-ambiance="cool_mint"] input::placeholder,
+html.ambiance-cool_mint input::placeholder,
+html[data-ambiance="cool_mint"] textarea::placeholder,
+html.ambiance-cool_mint textarea::placeholder {
+  color: #58876B !important;
+}
+
+/* Radiant Mint / Emerald CTA Buttons & Active Pills */
+html[data-ambiance="cool_mint"] a,
+html.ambiance-cool_mint a,
+html[data-ambiance="cool_mint"] .text-indigo-600,
+html.ambiance-cool_mint .text-indigo-600,
+html[data-ambiance="cool_mint"] .text-indigo-500,
+html.ambiance-cool_mint .text-indigo-500,
+html[data-ambiance="cool_mint"] .text-indigo-400,
+html.ambiance-cool_mint .text-indigo-400,
+html[data-ambiance="cool_mint"] .text-teal-400,
+html.ambiance-cool_mint .text-teal-400,
+html[data-ambiance="cool_mint"] .text-emerald-400,
+html.ambiance-cool_mint .text-emerald-400 {
+  color: #34D399 !important;
+}
+
+html[data-ambiance="cool_mint"] .bg-indigo-600,
+html.ambiance-cool_mint .bg-indigo-600,
+html[data-ambiance="cool_mint"] .bg-indigo-500,
+html.ambiance-cool_mint .bg-indigo-500,
+html[data-ambiance="cool_mint"] .bg-indigo-700,
+html.ambiance-cool_mint .bg-indigo-700,
+html[data-ambiance="cool_mint"] .bg-emerald-600,
+html.ambiance-cool_mint .bg-emerald-600 {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.85), rgba(5, 150, 105, 0.95)) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(52, 211, 153, 0.35) !important;
+  box-shadow: 0 4px 16px 0 rgba(16, 185, 129, 0.35) !important;
+}
+
+/* Translucent Secondary Highlights & Amber Badges */
+html[data-ambiance="cool_mint"] .bg-amber-500,
+html.ambiance-cool_mint .bg-amber-500,
+html[data-ambiance="cool_mint"] .bg-amber-600,
+html.ambiance-cool_mint .bg-amber-600 {
+  background: rgba(216, 182, 92, 0.22) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  color: #F5E5A3 !important;
+  border: 1px solid rgba(216, 182, 92, 0.35) !important;
+}
+
+html[data-ambiance="cool_mint"] .text-amber-500,
+html.ambiance-cool_mint .text-amber-500,
+html[data-ambiance="cool_mint"] .text-amber-400,
+html.ambiance-cool_mint .text-amber-400,
+html[data-ambiance="cool_mint"] .text-amber-300,
+html.ambiance-cool_mint .text-amber-300 {
+  color: #E2CF7D !important;
+}
+
+/* Translucent Mint Frosted Scrollbars */
+html[data-ambiance="cool_mint"] .custom-scrollbar,
+html.ambiance-cool_mint .custom-scrollbar {
+  scrollbar-color: rgba(52, 211, 153, 0.35) rgba(8, 20, 14, 0.2);
+}
+
+html[data-ambiance="cool_mint"] .custom-scrollbar::-webkit-scrollbar-thumb,
+html.ambiance-cool_mint .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(52, 211, 153, 0.35) !important;
+}
+
+html[data-ambiance="cool_mint"] .custom-scrollbar:hover::-webkit-scrollbar-thumb,
+html.ambiance-cool_mint .custom-scrollbar:hover::-webkit-scrollbar-thumb,
+html[data-ambiance="cool_mint"] .custom-scrollbar.is-scrolling::-webkit-scrollbar-thumb,
+html.ambiance-cool_mint .custom-scrollbar.is-scrolling::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(52, 211, 153, 0.8) 0%, rgba(16, 185, 129, 0.95) 100%) !important;
+  box-shadow: 0 0 12px rgba(52, 211, 153, 0.5) !important;
+}
+
+/* Subtle Siren Warning Ambient Glow */
+@keyframes sirenGlow {
+  0%, 100% {
+    box-shadow: inset 0 0 25px 5px rgba(239, 68, 68, 0.25), 0 0 15px 2px rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.4);
+  }
+  50% {
+    box-shadow: inset 0 0 50px 15px rgba(239, 68, 68, 0.5), 0 0 30px 6px rgba(239, 68, 68, 0.45);
+    border-color: rgba(239, 68, 68, 0.85);
+  }
+}
+
+.siren-ambient-warning {
+  animation: sirenGlow 1.4s ease-in-out infinite;
+}
+
+@keyframes sirenVignette {
+  0%, 100% {
+    box-shadow: inset 0 0 40px 10px rgba(220, 38, 38, 0.2);
+  }
+  50% {
+    box-shadow: inset 0 0 90px 25px rgba(220, 38, 38, 0.45);
+  }
+}
+
+.siren-vignette-overlay {
+  pointer-events: none;
+  animation: sirenVignette 1.2s ease-in-out infinite;
+}
+
+/* Sentence Builder Error Collapse & Fall Animation */
+@keyframes collapseShakeFall {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  20% {
+    transform: translateX(-6px) translateY(-2px) rotate(-3deg);
+  }
+  40% {
+    transform: translateX(6px) translateY(-4px) rotate(3deg);
+  }
+  60% {
+    transform: translateX(-4px) translateY(8px) rotate(-5deg);
+    opacity: 0.8;
+  }
+  80% {
+    transform: translateX(3px) translateY(24px) rotate(4deg) scale(0.9);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(0) translateY(40px) rotate(0deg) scale(0.7);
+    opacity: 0;
+  }
+}
+
+.animate-collapse-fall {
+  animation: collapseShakeFall 0.55s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* No Scrollbar Utility for Smooth Carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+

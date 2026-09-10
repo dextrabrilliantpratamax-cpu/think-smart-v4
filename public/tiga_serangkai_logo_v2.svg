@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <!-- Definition for crisp rendering and exact branding -->
+  <g id="ts-logo" transform="translate(40, 20)">
+    <!-- Main Book Shield Body (Teal: #006666 / #006869) -->
+    <!-- Left & Right outer bounding:
+         Top-Left: (16, 40)
+         Top-Center: (160, 88)
+         Top-Right: (304, 40)
+         Bottom-Left: (16, 290)
+         Bottom-Center: (160, 338)
+         Bottom-Right: (304, 290)
+    -->
+    <path
+      d="M 16 40 L 160 88 L 304 40 L 304 290 L 160 338 L 16 290 Z"
+      fill="#006769"
+      stroke="#006769"
+      stroke-width="2"
+      stroke-linejoin="round"
+    />
+
+    <!-- Subtle Center Crease Divider -->
+    <line
+      x1="160"
+      y1="88"
+      x2="160"
+      y2="338"
+      stroke="#004e50"
+      stroke-width="2.5"
+      opacity="0.3"
+    />
+
+    <!-- Left Wing: Letter "T" in Isometric Book Perspective -->
+    <!-- Top horizontal bar of T:
+         Starts at (24, 48), goes along top slope to (154, 91),
+         down to (154, 138), left to (118, 126),
+         down for the stem to (118, 320),
+         left along bottom slope to (58, 300),
+         up to (58, 106),
+         left to (24, 95) and closes at (24, 48).
+    -->
+    <path
+      d="M 22 47
+         L 155 91
+         L 155 136
+         L 116 123
+         L 116 319
+         L 58 300
+         L 58 104
+         L 22 92
+         Z"
+      fill="#FFFFFF"
+    />
+
+    <!-- Right Wing: Letter "S" / Path to Future Curve -->
+    <!--
+      Starts at the top-left of right page near the spine (165, 95),
+      sweeps up towards top-right along the right slope (270, 56),
+      curves smoothly down right-wards (280, 80),
+      then arcs inside to form the waist of S (178, 185),
+      then sweeps out and downwards to the wide base (294, 282),
+      along the bottom slope towards center (165, 325),
+      then the inner curve arches up and right (215, 240),
+      curving back up to the spine (165, 95).
+    -->
+    <path
+      d="M 165 94
+         C 205 110, 252 80, 276 54
+         C 284 72, 280 102, 256 136
+         C 230 172, 188 190, 178 224
+         C 166 264, 192 300, 296 284
+         L 296 286
+         C 272 316, 206 332, 165 328
+         C 162 280, 195 240, 218 206
+         C 246 166, 250 134, 218 112
+         C 195 96, 174 96, 165 94
+         Z"
+      fill="#FFFFFF"
+    />
+  </g>
+</svg>

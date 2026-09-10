@@ -1,0 +1,10 @@
+{
+  "name": "Remix Main Project Think Smart V4",
+  "description": "Aplikasi web pendamping buku pembelajaran Bahasa Inggris formal, akademik, dan interaktif karya Tiga Serangkai lengkap dengan pelacak progres, latihan UTBK, dan fitur AI.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

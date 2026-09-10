@@ -1,0 +1,127 @@
+import { QuizQuestion } from '../../types';
+import {
+  SIMPLE_PRESENT_QUIZ,
+  PRESENT_CONTINUOUS_QUIZ,
+  PRESENT_PERFECT_QUIZ,
+  PRESENT_PERFECT_CONTINUOUS_QUIZ
+} from './presentTensesQuiz';
+import {
+  SIMPLE_PAST_QUIZ,
+  PAST_CONTINUOUS_QUIZ,
+  PAST_PERFECT_QUIZ,
+  PAST_PERFECT_CONTINUOUS_QUIZ
+} from './pastTensesQuiz';
+import {
+  SIMPLE_FUTURE_QUIZ,
+  FUTURE_CONTINUOUS_QUIZ,
+  FUTURE_PERFECT_QUIZ,
+  FUTURE_PERFECT_CONTINUOUS_QUIZ
+} from './futureTensesQuiz';
+import {
+  PAST_FUTURE_QUIZ,
+  PAST_FUTURE_CONTINUOUS_QUIZ,
+  PAST_FUTURE_PERFECT_QUIZ,
+  PAST_FUTURE_PERFECT_CONTINUOUS_QUIZ
+} from './pastFutureTensesQuiz';
+
+export {
+  SIMPLE_PRESENT_QUIZ,
+  PRESENT_CONTINUOUS_QUIZ,
+  PRESENT_PERFECT_QUIZ,
+  PRESENT_PERFECT_CONTINUOUS_QUIZ,
+  SIMPLE_PAST_QUIZ,
+  PAST_CONTINUOUS_QUIZ,
+  PAST_PERFECT_QUIZ,
+  PAST_PERFECT_CONTINUOUS_QUIZ,
+  SIMPLE_FUTURE_QUIZ,
+  FUTURE_CONTINUOUS_QUIZ,
+  FUTURE_PERFECT_QUIZ,
+  FUTURE_PERFECT_CONTINUOUS_QUIZ,
+  PAST_FUTURE_QUIZ,
+  PAST_FUTURE_CONTINUOUS_QUIZ,
+  PAST_FUTURE_PERFECT_QUIZ,
+  PAST_FUTURE_PERFECT_CONTINUOUS_QUIZ
+};
+
+/**
+ * Mapping helper from Tense ID (1..16) or slug to its corresponding 10-question master quiz bank.
+ */
+export const TENSE_QUIZ_MAP: Record<string, QuizQuestion[]> = {
+  '1': SIMPLE_PRESENT_QUIZ,
+  'simple-present': SIMPLE_PRESENT_QUIZ,
+  
+  '2': PRESENT_CONTINUOUS_QUIZ,
+  'present-continuous': PRESENT_CONTINUOUS_QUIZ,
+  
+  '3': PRESENT_PERFECT_QUIZ,
+  'present-perfect': PRESENT_PERFECT_QUIZ,
+  
+  '4': PRESENT_PERFECT_CONTINUOUS_QUIZ,
+  'present-perfect-continuous': PRESENT_PERFECT_CONTINUOUS_QUIZ,
+  
+  '5': SIMPLE_PAST_QUIZ,
+  'simple-past': SIMPLE_PAST_QUIZ,
+  
+  '6': PAST_CONTINUOUS_QUIZ,
+  'past-continuous': PAST_CONTINUOUS_QUIZ,
+  
+  '7': PAST_PERFECT_QUIZ,
+  'past-perfect': PAST_PERFECT_QUIZ,
+  
+  '8': PAST_PERFECT_CONTINUOUS_QUIZ,
+  'past-perfect-continuous': PAST_PERFECT_CONTINUOUS_QUIZ,
+  
+  '9': SIMPLE_FUTURE_QUIZ,
+  'simple-future': SIMPLE_FUTURE_QUIZ,
+  
+  '10': FUTURE_CONTINUOUS_QUIZ,
+  'future-continuous': FUTURE_CONTINUOUS_QUIZ,
+  
+  '11': FUTURE_PERFECT_QUIZ,
+  'future-perfect': FUTURE_PERFECT_QUIZ,
+  
+  '12': FUTURE_PERFECT_CONTINUOUS_QUIZ,
+  'future-perfect-continuous': FUTURE_PERFECT_CONTINUOUS_QUIZ,
+  
+  '13': PAST_FUTURE_QUIZ,
+  'past-future': PAST_FUTURE_QUIZ,
+  
+  '14': PAST_FUTURE_CONTINUOUS_QUIZ,
+  'past-future-continuous': PAST_FUTURE_CONTINUOUS_QUIZ,
+  
+  '15': PAST_FUTURE_PERFECT_QUIZ,
+  'past-future-perfect': PAST_FUTURE_PERFECT_QUIZ,
+  
+  '16': PAST_FUTURE_PERFECT_CONTINUOUS_QUIZ,
+  'past-future-perfect-continuous': PAST_FUTURE_PERFECT_CONTINUOUS_QUIZ
+};
+
+/**
+ * Returns the 10 quiz questions for a given tense ID (1..16) or name.
+ */
+export function getQuizForTense(tenseId: string | number): QuizQuestion[] {
+  const key = String(tenseId);
+  return TENSE_QUIZ_MAP[key] || SIMPLE_PRESENT_QUIZ;
+}
+
+/**
+ * All 160 questions aggregated across all 16 tenses.
+ */
+export const ALL_160_TENSES_QUIZ: QuizQuestion[] = [
+  ...SIMPLE_PRESENT_QUIZ,
+  ...PRESENT_CONTINUOUS_QUIZ,
+  ...PRESENT_PERFECT_QUIZ,
+  ...PRESENT_PERFECT_CONTINUOUS_QUIZ,
+  ...SIMPLE_PAST_QUIZ,
+  ...PAST_CONTINUOUS_QUIZ,
+  ...PAST_PERFECT_QUIZ,
+  ...PAST_PERFECT_CONTINUOUS_QUIZ,
+  ...SIMPLE_FUTURE_QUIZ,
+  ...FUTURE_CONTINUOUS_QUIZ,
+  ...FUTURE_PERFECT_QUIZ,
+  ...FUTURE_PERFECT_CONTINUOUS_QUIZ,
+  ...PAST_FUTURE_QUIZ,
+  ...PAST_FUTURE_CONTINUOUS_QUIZ,
+  ...PAST_FUTURE_PERFECT_QUIZ,
+  ...PAST_FUTURE_PERFECT_CONTINUOUS_QUIZ
+];

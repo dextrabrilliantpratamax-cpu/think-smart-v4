@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <!-- Background is transparent (1x1 square) -->
+  <g id="tiga-serangkai-emblem">
+    <!-- Teal Book Shield Shell -->
+    <path
+      d="M 68 64
+         L 256 132
+         L 444 64
+         L 444 412
+         L 256 480
+         L 68 412
+         Z"
+      fill="#006769"
+      stroke="#006769"
+      stroke-width="3"
+      stroke-linejoin="round"
+    />
+
+    <!-- Subtle Center Crease -->
+    <line
+      x1="256"
+      y1="132"
+      x2="256"
+      y2="480"
+      stroke="#004D4E"
+      stroke-width="3"
+      opacity="0.35"
+    />
+
+    <!-- Authentic Letter T on Left Page -->
+    <path
+      d="M 76 72
+         L 252 135
+         L 252 216
+         L 194 195
+         L 194 452
+         L 118 425
+         L 118 168
+         L 76 153
+         Z"
+      fill="#FFFFFF"
+    />
+
+    <!-- Authentic Letter S / Pathway on Right Page -->
+    <!-- Starts from top spine (258, 136), sweeps up-right, curves through middle, flairs out at bottom right -->
+    <path
+      d="M 258 136
+         C 325 158, 400 115, 436 74
+         C 442 110, 420 170, 368 228
+         C 310 292, 280 340, 272 396
+         C 268 424, 280 448, 305 460
+         L 258 476
+         C 258 420, 275 365, 312 312
+         C 352 255, 386 200, 368 152
+         C 350 128, 310 135, 258 136
+         Z"
+      fill="#FFFFFF"
+    />
+  </g>
+</svg>
