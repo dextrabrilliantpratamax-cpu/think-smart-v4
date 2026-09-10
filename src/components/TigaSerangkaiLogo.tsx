@@ -13,76 +13,15 @@ export const TigaSerangkaiLogo: React.FC<TigaSerangkaiLogoProps> = ({
   size,
   lightMode = false,
 }) => {
-  // Official Tiga Serangkai Brand Colors
-  const brandTeal = '#006769';
-  const spineColor = '#004A4C';
-
-  // Authentic 1:1 Vector Emblem matching the official Tiga Serangkai brand image exactly
+  // Official Think Smart brand emblem — the authentic logo asset
   const LogoEmblem = (
-    <svg
-      viewBox="0 0 200 200"
-      className={`aspect-square select-none ${size ? '' : 'w-full h-full'} ${className}`}
+    <img
+      src="/think_smart_logo.png"
+      alt="Logo Think Smart"
+      className={`aspect-square select-none object-contain ${size ? '' : 'w-full h-full'} ${className}`}
       style={size ? { width: size, height: size } : undefined}
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-label="Logo Resmi Tiga Serangkai"
-    >
-      <g id="tiga-serangkai-emblem">
-        {/* Outer Teal Open-Book Shield Shell */}
-        <path
-          d="M 24 26
-             L 100 52
-             L 176 26
-             L 176 160
-             L 100 186
-             L 24 160
-             Z"
-          fill={brandTeal}
-          stroke={brandTeal}
-          strokeWidth="2"
-          strokeLinejoin="round"
-        />
-
-        {/* Center Spine Crease */}
-        <line
-          x1="100"
-          y1="52"
-          x2="100"
-          y2="186"
-          stroke={spineColor}
-          strokeWidth="1.6"
-          opacity="0.35"
-        />
-
-        {/* Left Page: Authentic Bold Letter 'T' */}
-        <path
-          d="M 28 30
-             L 97 54
-             L 97 80
-             L 76 72
-             L 76 174
-             L 48 164
-             L 48 62
-             L 28 55
-             Z"
-          fill="#FFFFFF"
-        />
-
-        {/* Right Page: Authentic Fluid Letter 'S' / Pathway */}
-        <path
-          d="M 103 55
-             C 126 76, 132 94, 114 122
-             C 105 136, 103 158, 103 184
-             C 128 175, 156 160, 168 144
-             C 174 116, 146 100, 138 82
-             C 130 66, 148 42, 166 28
-             L 103 55
-             Z"
-          fill="#FFFFFF"
-        />
-      </g>
-    </svg>
+      draggable={false}
+    />
   );
 
   if (variant === 'icon') {
